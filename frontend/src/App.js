@@ -2,9 +2,16 @@ import React from 'react';
 
 import EntityList from './components/EntityList'
 import HomeComponent from './components/HomeComponent'
-import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom"
+import BarraHerramientas from './components/BarraHerramientas'
+import {BrowserRouter as Router, Route, Switch, Redirect, NavLink} from "react-router-dom"
+import Formulario from './components/Formulario'
+
 import './App.css';
-//NavLink
+
+
+function FormularioComponent(){
+  return (<Formulario elFormulario= "formulario"/>)
+}
 
 function ClientesComponent(){
   return (<EntityList entity="clientes"/>)
@@ -12,36 +19,42 @@ function ClientesComponent(){
 function ProductosComponent(){
   return (<EntityList entity="productos"/>)
 }
+function BarraComponent(){
+  return (<BarraHerramientas barra="barraHerramientas"
+          
+  />)
+}
 function App() {
   return (
-    <div className="App">
+    <div className="container">
     <Router>
-      <header className="App-header">
-      {/* <img src={logo} className="App-logo" alt="logo" />*/}
-            
-{/*import logo from './logo.svg';*/}
-        {/* <ul>  
-         <li><NavLink to ="/">Home </NavLink></li>
-         <li><NavLink to ="/clientes">Clientes </NavLink></li>
-         <li><NavLink to ="/productos">Productos</NavLink></li>
-       </ul> */}
-       <nav>
-         <div className="nav-wrapper">
-         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a className="waves-effect waves-light btn" href= "/">Home</a></li>
-             <li><a className="waves-effect waves-light btn" href= "/clientes">Clientes</a></li>
-             <li><a className="waves-effect waves-light btn" href= "/productos">Productos</a></li>
-        </ul>
+        <header className="App-header">
       
+         <div>
+			  <nav  class="navbar navbar-default navbar-fixed-top navbar-custom App">
+         <div class="navbar-header">
+   		    <a href="/" class="btn btn-info" role="button">Home</a>
+       		<a href="/clientes" class="btn btn-info" role="button">Clientes</a> 
+       		<a href="/productos" class="btn btn-info" role="button">Productos</a> 
+       	</div>
+       		</nav>
        </div>
-       </nav>
+              {/* <nav  >
+       <BarraHerramientas nombreBoton="Home"></BarraHerramientas>
+         <BarraHerramientas nombreBoton="Clientes">
+            
+         </BarraHerramientas>
+         <BarraHerramientas nombreBoton="Productos"></BarraHerramientas>  */}
 
-      </header> 
-      <main className="App-main">
+         <Formulario></Formulario>
+       </header>     
+      <main className="App">
         <Switch>
             <Route path="/" exact component={HomeComponent} />
             <Route path="/clientes"  component={ClientesComponent} />
             <Route path="/productos" component={ProductosComponent} />
+            <Route path="/barraHerramientas" component={BarraComponent}/>
+            <Route path="/formulario" component={FormularioComponent}/>
             <Redirect to="/" />
           </Switch>
         </main>
@@ -50,4 +63,9 @@ function App() {
   );
 }
 
+
+
 export default App;
+
+  
+

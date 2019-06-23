@@ -19,7 +19,7 @@ class EntityList extends React.Component {
       var columns = Object.entries(this.state.entities[0]).map(entry => entry[0])
       return (
         <div className="EntityList">
-          <table className="table">
+          <table className="table table-bordered table-dark">
             <thead>
               <tr>
                 {this.renderHeaders(columns)}

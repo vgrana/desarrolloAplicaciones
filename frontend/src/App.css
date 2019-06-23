@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background: #12c2e9;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+min-height: 5vh;
 }
 
 .App-logo {
@@ -9,21 +13,25 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+    background: #C6FFDD;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); 
+   /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+min-height: 30vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  <!--align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(5px + 2vmin);
+  color: blue -->
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+
+<!--@keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }

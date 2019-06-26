@@ -1,4 +1,5 @@
 import React from 'react';
+import Formulario from './Formulario';
 
 class EntityList extends React.Component {
 
@@ -8,6 +9,10 @@ class EntityList extends React.Component {
     }
 
     componentWillMount() {
+      this.actualizarLista();
+    }
+
+    actualizarLista() {
       fetch(`http://localhost:8888/${this.props.entity}`)
         .then( res => res.json())
         .then( entities => this.setState({entities: entities}));
@@ -19,6 +24,7 @@ class EntityList extends React.Component {
       var columns = Object.entries(this.state.entities[0]).map(entry => entry[0])
       return (
         <div className="EntityList">
+          <Formulario actualizarLista={this.actualizarLista.bind(this)}/>
           <table className="table table-bordered table-dark">
             <thead>
               <tr>

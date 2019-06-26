@@ -20,9 +20,8 @@ function ProductosComponent(){
   return (<EntityList entity="productos"/>)
 }
 function BarraComponent(){
-  return (<BarraHerramientas barra="barraHerramientas"
-          
-  />)
+  return (<BarraHerramientas barra="barraHerramientas" />)
+ 
 }
 function App() {
   return (
@@ -46,7 +45,6 @@ function App() {
          </BarraHerramientas>
          <BarraHerramientas nombreBoton="Productos"></BarraHerramientas>  */}
 
-         <Formulario></Formulario>
        </header>     
       <main className="App">
         <Switch>

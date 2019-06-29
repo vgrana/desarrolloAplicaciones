@@ -8,6 +8,7 @@ class FormularioProducto extends Component {
       this.state = this.estadoInicial();
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     estadoInicial() {
@@ -21,15 +22,15 @@ class FormularioProducto extends Component {
     }
   
     handleSubmit(event) {
-      this.guardar();
+      this.agregar();
       event.preventDefault();
     }
 //productos deberia poder poner cualquiera
-    guardar() {
-      const productoNuevo = {nombre: this.state.nombre, precio: this.state.precio};
+    agregar(p) {
+      //const productoNuevo = {nombre: this.state.nombre, precio: this.state.precio};
       fetch(`http://localhost:8888/productos`, {
         method: 'POST',
-        body: JSON.stringify(productoNuevo),
+        body: JSON.stringify(this.state),
         headers: { 'Content-Type': 'application/json' }
       })
         .then(() => this.setState(this.estadoInicial()) )
@@ -48,11 +49,11 @@ class FormularioProducto extends Component {
 				        <form onSubmit={this.handleSubmit}>
 					        <div className="col-lg-2">
 					            <input type="nombre" className="form-control" name="nombre"
-                                placeholder ="nombre del producto" value={this.state.props} onChange={this.handleInputChange}/>
+                                placeholder ="nombre del producto" value={this.state.nombre} onChange={this.handleInputChange}/>
 					        </div>
 						    <div class="col-lg-2">
                                  <input type="precio" class="form-control" name="precio"
-                                   placeholder="precio" value={this.state.props} onChange={this.handleInputChange}/>
+                                   placeholder="precio" value={this.state.precio} onChange={this.handleInputChange}/>
                                 </div>
                                 <div className="col-lg-2">
                             <button type="submit" class="btn btn-primary btn-block">Insertar</button>							 						

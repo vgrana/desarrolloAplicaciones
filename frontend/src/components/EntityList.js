@@ -1,18 +1,15 @@
 import React from 'react';
-//import FormularioCliente from './FormularioCliente';
-//import FormularioProducto from './FormularioProducto';
-
 
 class EntityList extends React.Component {
 
     constructor(props) {
       super(props);
-      this.state= { entities: []}
+      this.state= { entities: [], seleccionado:{}}
       this.borrar = this.borrar.bind(this); 
       this.componentWillMount= this.componentWillMount.bind(this);
+      this.selectProducto= this.selectProducto.bind(this)
       
     }
-
     componentWillMount() {
       this.actualizarLista();
     }
@@ -21,6 +18,12 @@ class EntityList extends React.Component {
       fetch(`http://localhost:8888/${this.props.entity}`)
         .then( res => res.json())
         .then( entities => this.setState({entities: entities}));
+        //es lo mismo que lo de arriba pero con data
+        // .then( data => this.setState({entities: data}));
+    }
+
+    selectProducto(unL) {
+      this.setState({seleccionado: unL})
     }
 
     borrar(id){
@@ -33,9 +36,18 @@ class EntityList extends React.Component {
         'Accept':'application/json',
         'Content-Type':'application/json' }
       }) 
-      .then(res =>res.json())
-      .then(data=> console.log(data), this.actualizarLista());
+      //esto no va xq el delete no muestra nada por pantalla,solo borra
+      // .then(data=> console.log(data))
+      .then(() => this.actualizarLista());
     }
+    editar(unL) {
+      console.log(unL)
+    var nuevaLista = this.state.entities.map( (item) =>  (item._id != unL._id) ?  item : unL   )
+    this.setState({entities: nuevaLista, seleccionado: unL})
+  }
+
+
+
 
     render() {
       if(this.state.entities.length > 0) {
@@ -79,7 +91,7 @@ class EntityList extends React.Component {
           
           <button className=" btn btn-success">
           {/* no anda el lapiz */}
-          <i className = "icon-pencil" > Editar</i> 
+          <i className = "icon-pencil" onClick= {()=>{this.editar(object)}} > Editar</i> 
            </button>
            {/* en el style le paso un objeto y le doy valor */}
            <button className=" btn btn-danger"  style = {{margin: '4px'}} 

@@ -4,7 +4,7 @@ class FormularioCliente extends Component {
 
     constructor(props) {
       super(props);
-      
+      this.state= {clientes :[]}
       this.state = this.estadoInicial();
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,15 +21,16 @@ class FormularioCliente extends Component {
     }
   
     handleSubmit(event) {
-      this.guardar();
+      this.agregar();
       event.preventDefault();
     }
 //productos deberia poder poner cualquiera
-    guardar() {
-      const clienteNuevo = {nombre: this.state.nombre, direccion: this.state.direccion};
+    agregar(p) {
+      //const clienteNuevo = {nombre: this.state.nombre, direccion: this.state.direccion};
       fetch(`http://localhost:8888/clientes`, {
         method: 'POST',
-        body: JSON.stringify(clienteNuevo),
+        //en lugar de pasar la const agregue un parametro q recibe
+        body: JSON.stringify(this.state),
         headers: { 'Content-Type': 'application/json' }
       })
         .then(() => this.setState(this.estadoInicial()) )
@@ -37,7 +38,7 @@ class FormularioCliente extends Component {
     }
 
 
-
+   
     render() {
       return (  
         <div className="container">
